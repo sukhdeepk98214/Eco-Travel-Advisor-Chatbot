@@ -1,0 +1,645 @@
+# =============================================================================
+# Eco-Travel Advisor - NLU Training Data
+# 20+ examples per intent | Entity annotations included
+# =============================================================================
+
+version: "3.1"
+
+nlu:
+
+# ---------------------------------------------------------------------------
+# INTENT: greet
+# ---------------------------------------------------------------------------
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - hey there
+    - good morning
+    - good afternoon
+    - good evening
+    - howdy
+    - hi there
+    - hello there
+    - greetings
+    - what's up
+    - sup
+    - yo
+    - hiya
+    - morning
+    - hi bot
+    - hello bot
+    - hey bot
+    - start
+    - begin
+    - let's start
+    - hi, I need some help
+
+# ---------------------------------------------------------------------------
+# INTENT: goodbye
+# ---------------------------------------------------------------------------
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - see ya
+    - take care
+    - farewell
+    - catch you later
+    - talk to you later
+    - I'm done
+    - that's all
+    - exit
+    - quit
+    - I have to go
+    - I'll be going now
+    - thanks, bye
+    - good night
+    - later
+    - until next time
+    - I'm finished
+    - done for now
+    - signing off
+    - I'm leaving
+
+# ---------------------------------------------------------------------------
+# INTENT: plan_trip
+# ---------------------------------------------------------------------------
+- intent: plan_trip
+  examples: |
+    - I want to plan a trip
+    - help me plan a vacation
+    - I'd like to travel somewhere eco-friendly
+    - plan a sustainable trip for me
+    - I want to travel sustainably
+    - help me book an eco-friendly vacation
+    - I need travel advice
+    - plan my next trip
+    - I want to go on a green vacation
+    - help me with trip planning
+    - I'm thinking about traveling
+    - I want to explore sustainable destinations
+    - can you help me plan an eco trip
+    - I'd love to go on an environmentally friendly vacation
+    - let's plan a green trip together
+    - I need help planning my travel
+    - suggest a sustainable travel plan
+    - I want to travel without harming the environment
+    - help me find eco-friendly travel options
+    - I'm interested in sustainable tourism
+    - I want to go somewhere environmentally responsible
+    - let's start planning a trip
+
+# ---------------------------------------------------------------------------
+# INTENT: provide_destination
+# ---------------------------------------------------------------------------
+- intent: provide_destination
+  examples: |
+    - I want to go to [Costa Rica](destination)
+    - my destination is [Iceland](destination)
+    - I'm planning to visit [New Zealand](destination)
+    - I'd like to travel to [Japan](destination)
+    - take me to [Bali](destination)
+    - I want to visit [Norway](destination)
+    - heading to [Switzerland](destination)
+    - I'm going to [Canada](destination)
+    - destination is [Thailand](destination)
+    - I plan to go to [Portugal](destination)
+    - visiting [Colombia](destination)
+    - I want to explore [Kenya](destination)
+    - my trip is to [Peru](destination)
+    - [Amsterdam](destination) please
+    - [New Zealand](destination)
+    - I'm traveling to [Scotland](destination)
+    - I want to see [Patagonia](destination)
+    - flying to [Morocco](destination)
+    - going to [Vietnam](destination)
+    - I'd like to visit [Ecuador](destination)
+    - I want to go to [Italy](destination)
+    - [Barcelona](destination) is my destination
+    - traveling to [Australia](destination)
+    - I want to explore [Brazil](destination)
+    - [Nepal](destination) sounds great
+
+# ---------------------------------------------------------------------------
+# INTENT: provide_budget
+# ---------------------------------------------------------------------------
+- intent: provide_budget
+  examples: |
+    - my budget is [$500](budget)
+    - I have around [$2000](budget) to spend
+    - I can spend up to [$1500](budget)
+    - budget is [$3000](budget)
+    - approximately [$800](budget)
+    - I'm working with a [$1000](budget) budget
+    - I have [$5000](budget) available
+    - my travel budget is [$2500](budget)
+    - around [500 dollars](budget)
+    - I can afford [1500 USD](budget)
+    - budget of [2000 euros](budget)
+    - roughly [$700](budget)
+    - about [1200 pounds](budget)
+    - I have a low budget
+    - medium budget
+    - high budget
+    - I don't have much money, maybe [$400](budget)
+    - I can spend between [$1000](budget) and [$2000](budget)
+    - around [three thousand dollars](budget)
+    - I have a generous budget of [$10000](budget)
+    - tight budget, around [$600](budget)
+    - my budget is flexible but around [$1500](budget)
+
+# ---------------------------------------------------------------------------
+# INTENT: provide_dates
+# ---------------------------------------------------------------------------
+- intent: provide_dates
+  examples: |
+    - I'm traveling on [July 15th](date)
+    - my travel dates are [July 10-20](date)
+    - I want to go in [August](date)
+    - traveling [next month](date)
+    - dates are [December 25th to January 5th](date)
+    - I'll be going [in 2 weeks](date)
+    - [March 15 to March 22](date)
+    - sometime in [summer](date)
+    - [next weekend](date)
+    - [October 2025](date)
+    - going in [early spring](date)
+    - [February 14](date)
+    - travel dates [June 1-14](date)
+    - I plan to travel in [winter](date)
+    - [next year in January](date)
+    - departing [September 1st](date)
+    - from [November 20 to November 30](date)
+    - [in 3 weeks](date)
+    - I'm flexible but thinking [late July](date)
+    - trip dates are [August 5 to August 15](date)
+    - going [this Christmas](date)
+    - [spring break](date) trip
+
+# ---------------------------------------------------------------------------
+# INTENT: provide_travelers
+# ---------------------------------------------------------------------------
+- intent: provide_travelers
+  examples: |
+    - just [me](travelers), solo traveler
+    - traveling with [2 people](travelers)
+    - [4 travelers](travelers)
+    - it's a group of [6](travelers)
+    - [1](travelers) person
+    - [2](travelers) adults
+    - family of [4](travelers)
+    - [3 people](travelers) including me
+    - solo trip, just [1](travelers)
+    - [5 people](travelers) will be going
+    - traveling with my partner, [2](travelers) of us
+    - [10 people](travelers) in our group
+    - [2](travelers) adults and [2](travelers) kids, so [4](travelers) total
+    - group of [8](travelers)
+    - just [me](travelers) and a friend, [2](travelers) total
+    - [7 travelers](travelers)
+    - we are [3](travelers) friends
+    - [1](travelers) adult
+    - solo, [1](travelers)
+    - [2](travelers) of us
+    - party of [4](travelers)
+    - there will be [12 people](travelers)
+
+# ---------------------------------------------------------------------------
+# INTENT: sustainability_preference
+# ---------------------------------------------------------------------------
+- intent: sustainability_preference
+  examples: |
+    - I prefer [high](sustainability_level) sustainability
+    - I want a [medium](sustainability_level) eco-friendly trip
+    - [low](sustainability_level) sustainability is fine
+    - go [green](sustainability_level)
+    - make it as eco-friendly as possible, [high](sustainability_level)
+    - [medium](sustainability_level) level please
+    - I care a lot about the environment, [high](sustainability_level)
+    - [low](sustainability_level) priority on sustainability
+    - I want to be very eco-conscious, [high](sustainability_level)
+    - somewhat eco-friendly, [medium](sustainability_level)
+    - [high](sustainability_level) sustainability preference
+    - I'm moderately eco-conscious, [medium](sustainability_level)
+    - not very concerned about eco impact, [low](sustainability_level)
+    - I want maximum sustainability
+    - sustainability is very important to me
+    - I want to minimize my carbon footprint
+    - somewhat green, not too strict
+    - I'd like a [high](sustainability_level) eco-friendly option
+    - [medium](sustainability_level) eco impact is okay
+    - prioritize sustainability above all, [high](sustainability_level)
+    - I'm new to eco travel, [low](sustainability_level) to start
+    - as sustainable as possible
+
+# ---------------------------------------------------------------------------
+# INTENT: ask_hotel
+# ---------------------------------------------------------------------------
+- intent: ask_hotel
+  examples: |
+    - show me eco-friendly hotels
+    - what are the green hotel options?
+    - recommend sustainable accommodations
+    - I need an eco hotel
+    - where can I stay sustainably?
+    - find me environmentally friendly hotels
+    - what hotels have green certifications?
+    - suggest eco lodges
+    - I want to stay at a sustainable property
+    - are there any carbon neutral hotels?
+    - show me hotels with solar panels
+    - what are the best eco-resorts?
+    - I need green accommodation options
+    - find me hotels near nature reserves
+    - suggest boutique eco hotels
+    - I want lodging that supports local communities
+    - eco-certified hotels please
+    - what are the most sustainable places to stay?
+    - show me hotels that recycle and conserve water
+    - recommend a green bed and breakfast
+    - I want accommodation with a low carbon footprint
+    - sustainable hotel recommendations
+
+# ---------------------------------------------------------------------------
+# INTENT: ask_transport
+# ---------------------------------------------------------------------------
+- intent: ask_transport
+  examples: |
+    - what are the sustainable transport options?
+    - how should I travel sustainably?
+    - recommend eco-friendly transportation
+    - what's the greenest way to get there?
+    - should I take the train or fly?
+    - tell me about electric vehicle rentals
+    - what transport has the lowest carbon footprint?
+    - I want to use sustainable transportation
+    - compare train vs flight emissions
+    - is there a green bus option?
+    - I want to rent an electric car
+    - what public transport options are available?
+    - should I take a bus or train?
+    - how can I get there with minimum emissions?
+    - show me carbon-friendly travel options
+    - what's the most eco way to travel?
+    - I want to avoid flying
+    - bike rental options
+    - electric scooter availability
+    - what is the most environmentally friendly way to travel?
+    - tell me about carbon-efficient transport
+    - sustainable travel by train
+
+# ---------------------------------------------------------------------------
+# INTENT: ask_carbon
+# ---------------------------------------------------------------------------
+- intent: ask_carbon
+  examples: |
+    - calculate my carbon footprint
+    - what are my carbon emissions?
+    - how much CO2 will I produce?
+    - estimate my carbon impact
+    - what's the carbon footprint of my trip?
+    - how much carbon do flights produce?
+    - compare carbon emissions of transport types
+    - how eco-friendly is my travel?
+    - what's the environmental impact of my trip?
+    - how much will I emit traveling by train?
+    - calculate CO2 for my flight
+    - what are the emissions per person?
+    - tell me my carbon footprint
+    - how green is this trip?
+    - how many kg of CO2 will I emit?
+    - calculate greenhouse gas emissions
+    - what's my environmental footprint for this trip?
+    - how does flight compare to train in emissions?
+    - I want to know my carbon impact
+    - calculate emissions for [flight](transport_type)
+    - what's the CO2 for [train](transport_type) travel?
+    - carbon footprint comparison
+
+# ---------------------------------------------------------------------------
+# INTENT: ask_activities
+# ---------------------------------------------------------------------------
+- intent: ask_activities
+  examples: |
+    - what eco-friendly activities are available?
+    - suggest sustainable things to do
+    - recommend local cultural experiences
+    - what can I do that supports local communities?
+    - tell me about eco-tourism activities
+    - are there nature tours?
+    - what wildlife experiences are available?
+    - suggest green day trips
+    - I want to experience local culture sustainably
+    - what traditional festivals are happening?
+    - recommend community-based tourism
+    - I want to support local artisans
+    - what volunteer opportunities are available?
+    - sustainable hiking and trekking options
+    - what are the best eco-adventures?
+    - tell me about local food experiences
+    - are there any ethical wildlife encounters?
+    - I want to do something that benefits the local community
+    - suggest carbon-neutral activities
+    - what are the best cultural immersion experiences?
+    - I want to see local handicrafts and markets
+    - eco-friendly adventure activities
+
+# ---------------------------------------------------------------------------
+# INTENT: human_handover
+# ---------------------------------------------------------------------------
+- intent: human_handover
+  examples: |
+    - I want to talk to a human
+    - connect me to a real person
+    - I need a human agent
+    - transfer me to a live agent
+    - I want to speak to someone
+    - can I talk to a travel specialist?
+    - connect me to customer support
+    - I'd like to speak with a real person
+    - human please
+    - I need human help
+    - escalate to a human agent
+    - I want to speak to a real travel advisor
+    - can I get human assistance?
+    - please connect me to a person
+    - I need to talk to someone
+    - transfer to live support
+    - I want a real advisor
+    - speak to agent
+    - connect to human support
+    - I want human interaction
+    - agent please
+    - I need a real person to help me
+
+# ---------------------------------------------------------------------------
+# INTENT: affirm
+# ---------------------------------------------------------------------------
+- intent: affirm
+  examples: |
+    - yes
+    - yes please
+    - yeah
+    - yep
+    - sure
+    - of course
+    - absolutely
+    - definitely
+    - that's correct
+    - right
+    - correct
+    - exactly
+    - that's right
+    - sounds good
+    - perfect
+    - great
+    - ok
+    - okay
+    - affirmative
+    - go ahead
+    - proceed
+    - please do
+    - that works
+    - I agree
+
+# ---------------------------------------------------------------------------
+# INTENT: deny
+# ---------------------------------------------------------------------------
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - no thanks
+    - not really
+    - I don't think so
+    - negative
+    - that's wrong
+    - incorrect
+    - not quite
+    - that's not right
+    - I disagree
+    - cancel
+    - stop
+    - never mind
+    - forget it
+    - skip that
+    - no way
+    - not interested
+    - I'd rather not
+    - pass
+    - no need
+    - don't want that
+
+# ---------------------------------------------------------------------------
+# INTENT: bot_challenge
+# ---------------------------------------------------------------------------
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a robot?
+    - am I talking to a human?
+    - are you human?
+    - is this a chatbot?
+    - are you an AI?
+    - who are you?
+    - what are you?
+    - are you real?
+    - I'm talking to a bot, right?
+    - this is AI, isn't it?
+    - you're not a real person, are you?
+
+# ---------------------------------------------------------------------------
+# INTENT: thanks
+# ---------------------------------------------------------------------------
+- intent: thanks
+  examples: |
+    - thank you
+    - thanks
+    - thanks a lot
+    - thank you so much
+    - many thanks
+    - appreciate it
+    - cheers
+    - that was helpful
+    - you're amazing
+    - great help
+    - thanks for the info
+    - that's very helpful
+    - I appreciate your help
+    - thank you very much
+    - much appreciated
+
+# ---------------------------------------------------------------------------
+# INTENT: ask_help
+# ---------------------------------------------------------------------------
+- intent: ask_help
+  examples: |
+    - help
+    - I need help
+    - what can you do?
+    - how does this work?
+    - what are your features?
+    - what can I ask you?
+    - show me the options
+    - what do you offer?
+    - how can you help me?
+    - guide me
+    - instructions please
+    - I'm lost
+    - I don't know what to do
+    - what should I say?
+    - give me some options
+    - help me out
+
+# ---------------------------------------------------------------------------
+# INTENT: restart
+# ---------------------------------------------------------------------------
+- intent: restart
+  examples: |
+    - restart
+    - start over
+    - begin again
+    - reset
+    - start fresh
+    - let's restart
+    - I want to start over
+    - restart the conversation
+    - clear everything
+    - start from scratch
+    - reset my trip
+    - let me try again
+
+# ---------------------------------------------------------------------------
+# INTENT: out_of_scope
+# ---------------------------------------------------------------------------
+- intent: out_of_scope
+  examples: |
+    - what's the weather like today?
+    - who won the football game?
+    - tell me a joke
+    - what's 2 plus 2?
+    - recommend a movie
+    - what's your favorite food?
+    - can you book flights directly?
+    - can you process payments?
+    - translate this for me
+    - what's the stock price?
+    - tell me the news today
+    - what time is it?
+
+# ---------------------------------------------------------------------------
+# SYNONYMS
+# ---------------------------------------------------------------------------
+- synonym: high
+  examples: |
+    - maximum
+    - very high
+    - extreme
+    - maximum eco
+    - fully sustainable
+    - completely green
+    - max eco
+
+- synonym: medium
+  examples: |
+    - moderate
+    - middle
+    - average
+    - somewhat
+    - balanced
+    - mixed
+
+- synonym: low
+  examples: |
+    - minimal
+    - basic
+    - not very
+    - not important
+    - low priority
+
+- synonym: flight
+  examples: |
+    - airplane
+    - plane
+    - air travel
+    - flying
+    - fly
+
+- synonym: train
+  examples: |
+    - rail
+    - railway
+    - railroad
+    - rail travel
+
+- synonym: bus
+  examples: |
+    - coach
+    - bus travel
+    - public bus
+
+- synonym: electric vehicle
+  examples: |
+    - EV
+    - electric car
+    - electric automobile
+    - tesla
+
+# ---------------------------------------------------------------------------
+# LOOKUP TABLES
+# ---------------------------------------------------------------------------
+- lookup: destination
+  examples: |
+    - Costa Rica
+    - Iceland
+    - New Zealand
+    - Japan
+    - Bali
+    - Norway
+    - Switzerland
+    - Canada
+    - Thailand
+    - Portugal
+    - Colombia
+    - Kenya
+    - Peru
+    - Amsterdam
+    - Scotland
+    - Patagonia
+    - Morocco
+    - Vietnam
+    - Ecuador
+    - Italy
+    - Barcelona
+    - Australia
+    - Brazil
+    - Nepal
+    - Sweden
+    - Finland
+    - Denmark
+    - Germany
+    - France
+    - Spain
+
+# ---------------------------------------------------------------------------
+# REGEX FEATURES
+# ---------------------------------------------------------------------------
+- regex: budget
+  examples: |
+    - \$\d+
+    - \d+ dollars
+    - \d+ USD
+    - \d+ euros
+    - \d+ pounds
+    - £\d+
+    - €\d+
+
+- regex: travelers
+  examples: |
+    - \d+ (people|persons|travelers|travellers|adults|kids)
+    - (solo|alone|myself|just me)
+    - family of \d+
+    - group of \d+

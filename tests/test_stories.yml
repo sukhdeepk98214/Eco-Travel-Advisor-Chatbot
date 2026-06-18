@@ -1,0 +1,156 @@
+# =============================================================================
+# Eco-Travel Advisor - End-to-End Conversation Tests
+# Run with: rasa test
+# =============================================================================
+
+version: "3.1"
+
+tests:
+
+# ---------------------------------------------------------------------------
+# TEST 1: Greeting and bot identity
+# ---------------------------------------------------------------------------
+- story: test greet and bot challenge
+  steps:
+    - user: |
+        Hello there
+      intent: greet
+    - action: utter_greet
+    - user: |
+        Are you a bot?
+      intent: bot_challenge
+    - action: utter_bot_challenge
+
+# ---------------------------------------------------------------------------
+# TEST 2: Full trip planning
+# ---------------------------------------------------------------------------
+- story: test complete trip planning
+  steps:
+    - user: |
+        I want to plan a trip to Costa Rica
+      intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - user: |
+        Costa Rica
+      intent: provide_destination
+      entities:
+        - destination: Costa Rica
+    - slot_was_set:
+        - destination: Costa Rica
+    - action: trip_planning_form
+    - user: |
+        July 15 to July 25
+      intent: provide_dates
+      entities:
+        - date: July 15 to July 25
+    - slot_was_set:
+        - travel_date: July 15 to July 25
+    - action: trip_planning_form
+    - user: |
+        My budget is $2000
+      intent: provide_budget
+      entities:
+        - budget: $2000
+    - slot_was_set:
+        - budget: $2000
+    - action: trip_planning_form
+    - user: |
+        2 people
+      intent: provide_travelers
+      entities:
+        - travelers: 2 people
+    - slot_was_set:
+        - travelers: 2 people
+    - action: trip_planning_form
+    - user: |
+        High sustainability please
+      intent: sustainability_preference
+      entities:
+        - sustainability_level: high
+    - slot_was_set:
+        - sustainability_level: high
+    - action: trip_planning_form
+    - active_loop: null
+    - action: action_trip_summary
+
+# ---------------------------------------------------------------------------
+# TEST 3: Ask for eco hotels
+# ---------------------------------------------------------------------------
+- story: test hotel recommendation
+  steps:
+    - user: |
+        Show me eco-friendly hotels
+      intent: ask_hotel
+    - action: action_recommend_hotels
+
+# ---------------------------------------------------------------------------
+# TEST 4: Ask for transport options
+# ---------------------------------------------------------------------------
+- story: test transport recommendation
+  steps:
+    - user: |
+        What are the sustainable transport options?
+      intent: ask_transport
+    - action: action_recommend_transport
+
+# ---------------------------------------------------------------------------
+# TEST 5: Calculate carbon footprint
+# ---------------------------------------------------------------------------
+- story: test carbon calculation
+  steps:
+    - user: |
+        Calculate my carbon footprint
+      intent: ask_carbon
+    - action: action_calculate_carbon
+
+# ---------------------------------------------------------------------------
+# TEST 6: Ask for activities
+# ---------------------------------------------------------------------------
+- story: test activities recommendation
+  steps:
+    - user: |
+        What eco-friendly activities are there?
+      intent: ask_activities
+    - action: action_recommend_activities
+
+# ---------------------------------------------------------------------------
+# TEST 7: Human handover
+# ---------------------------------------------------------------------------
+- story: test human handover
+  steps:
+    - user: |
+        I want to speak to a human agent
+      intent: human_handover
+    - action: action_human_handover
+
+# ---------------------------------------------------------------------------
+# TEST 8: Goodbye
+# ---------------------------------------------------------------------------
+- story: test goodbye
+  steps:
+    - user: |
+        Goodbye
+      intent: goodbye
+    - action: utter_goodbye
+
+# ---------------------------------------------------------------------------
+# TEST 9: Help request
+# ---------------------------------------------------------------------------
+- story: test help request
+  steps:
+    - user: |
+        What can you help me with?
+      intent: ask_help
+    - action: utter_help
+
+# ---------------------------------------------------------------------------
+# TEST 10: Out of scope
+# ---------------------------------------------------------------------------
+- story: test out of scope handling
+  steps:
+    - user: |
+        What's the weather like?
+      intent: out_of_scope
+    - action: utter_out_of_scope

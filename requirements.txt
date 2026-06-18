@@ -1,0 +1,19 @@
+# =============================================================================
+# Eco-Travel Advisor - Python Dependencies
+# =============================================================================
+
+# Core Rasa Framework
+rasa==3.6.20
+
+# Rasa SDK (custom actions)
+rasa-sdk==3.6.2
+
+# Streamlit frontend
+streamlit==1.32.0
+
+# HTTP requests (used by frontend + actions)
+requests==2.31.0
+
+# Data handling
+# (included with rasa, listed for clarity)
+aiohttp==3.9.3

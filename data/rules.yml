@@ -1,0 +1,136 @@
+# =============================================================================
+# Eco-Travel Advisor - Rules (Deterministic Conversation Rules)
+# Rules always fire regardless of conversation context
+# =============================================================================
+
+version: "3.1"
+
+rules:
+
+# ---------------------------------------------------------------------------
+# RULE: Respond to greet
+# ---------------------------------------------------------------------------
+- rule: Say hello on greet
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+# ---------------------------------------------------------------------------
+# RULE: Respond to goodbye
+# ---------------------------------------------------------------------------
+- rule: Say goodbye on goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+# ---------------------------------------------------------------------------
+# RULE: Handle bot challenge
+# ---------------------------------------------------------------------------
+- rule: Respond to bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_bot_challenge
+
+# ---------------------------------------------------------------------------
+# RULE: Handle thanks
+# ---------------------------------------------------------------------------
+- rule: Respond to thanks
+  steps:
+    - intent: thanks
+    - action: utter_thanks
+
+# ---------------------------------------------------------------------------
+# RULE: Handle out-of-scope questions
+# ---------------------------------------------------------------------------
+- rule: Out of scope response
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+# ---------------------------------------------------------------------------
+# RULE: Handle help request
+# ---------------------------------------------------------------------------
+- rule: Provide help when asked
+  steps:
+    - intent: ask_help
+    - action: utter_help
+
+# ---------------------------------------------------------------------------
+# RULE: Restart conversation
+# ---------------------------------------------------------------------------
+- rule: Restart on user request
+  steps:
+    - intent: restart
+    - action: action_restart
+    - action: utter_greet
+
+# ---------------------------------------------------------------------------
+# RULE: Activate trip planning form
+# ---------------------------------------------------------------------------
+- rule: Activate trip planning form
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+
+# ---------------------------------------------------------------------------
+# RULE: Submit trip planning form
+# ---------------------------------------------------------------------------
+- rule: Submit the trip planning form
+  condition:
+    - active_loop: trip_planning_form
+  steps:
+    - action: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+
+# ---------------------------------------------------------------------------
+# RULE: Human handover request
+# ---------------------------------------------------------------------------
+- rule: Handle human handover request
+  steps:
+    - intent: human_handover
+    - action: action_human_handover
+
+# ---------------------------------------------------------------------------
+# RULE: Ask for hotels
+# ---------------------------------------------------------------------------
+- rule: Recommend hotels when asked
+  steps:
+    - intent: ask_hotel
+    - action: action_recommend_hotels
+
+# ---------------------------------------------------------------------------
+# RULE: Ask for transport
+# ---------------------------------------------------------------------------
+- rule: Recommend transport when asked
+  steps:
+    - intent: ask_transport
+    - action: action_recommend_transport
+
+# ---------------------------------------------------------------------------
+# RULE: Calculate carbon
+# ---------------------------------------------------------------------------
+- rule: Calculate carbon when asked
+  steps:
+    - intent: ask_carbon
+    - action: action_calculate_carbon
+
+# ---------------------------------------------------------------------------
+# RULE: Ask for activities
+# ---------------------------------------------------------------------------
+- rule: Recommend activities when asked
+  steps:
+    - intent: ask_activities
+    - action: action_recommend_activities
+
+# ---------------------------------------------------------------------------
+# RULE: Default fallback response
+# ---------------------------------------------------------------------------
+- rule: Default fallback response
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default_fallback

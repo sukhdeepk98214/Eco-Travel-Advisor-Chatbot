@@ -1,0 +1,185 @@
+# =============================================================================
+# Eco-Travel Advisor - Stories
+# NOTE: Rules handle single-turn responses. Stories handle multi-turn flows.
+# Stories must NOT contradict rules.
+# =============================================================================
+
+version: "3.1"
+
+stories:
+
+# ---------------------------------------------------------------------------
+# STORY 1: Full trip planning — ends after summary (rules handle follow-ups)
+# ---------------------------------------------------------------------------
+- story: complete trip planning flow
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+
+# ---------------------------------------------------------------------------
+# STORY 2: Plan trip then ask hotels (two separate turns)
+# ---------------------------------------------------------------------------
+- story: plan trip then ask hotels
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: ask_hotel
+    - action: action_recommend_hotels
+
+# ---------------------------------------------------------------------------
+# STORY 3: Plan trip then ask transport
+# ---------------------------------------------------------------------------
+- story: plan trip then ask transport
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: ask_transport
+    - action: action_recommend_transport
+
+# ---------------------------------------------------------------------------
+# STORY 4: Plan trip then ask carbon
+# ---------------------------------------------------------------------------
+- story: plan trip then ask carbon
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: ask_carbon
+    - action: action_calculate_carbon
+
+# ---------------------------------------------------------------------------
+# STORY 5: Plan trip then ask activities
+# ---------------------------------------------------------------------------
+- story: plan trip then ask activities
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: ask_activities
+    - action: action_recommend_activities
+
+# ---------------------------------------------------------------------------
+# STORY 6: Plan trip then request human handover
+# ---------------------------------------------------------------------------
+- story: plan trip then request human handover
+  steps:
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: human_handover
+    - action: action_human_handover
+
+# ---------------------------------------------------------------------------
+# STORY 7: Ask transport then compare carbon
+# ---------------------------------------------------------------------------
+- story: ask transport then compare carbon
+  steps:
+    - intent: ask_transport
+    - action: action_recommend_transport
+    - intent: ask_carbon
+    - action: action_calculate_carbon
+
+# ---------------------------------------------------------------------------
+# STORY 8: Ask hotels then ask activities
+# ---------------------------------------------------------------------------
+- story: ask hotels then ask activities
+  steps:
+    - intent: ask_hotel
+    - action: action_recommend_hotels
+    - intent: ask_activities
+    - action: action_recommend_activities
+
+# ---------------------------------------------------------------------------
+# STORY 9: Full high-sustainability planning flow
+# ---------------------------------------------------------------------------
+- story: high sustainability planning
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - slot_was_set:
+        - sustainability_level: high
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+    - intent: ask_hotel
+    - action: action_recommend_hotels
+    - intent: ask_carbon
+    - action: action_calculate_carbon
+
+# ---------------------------------------------------------------------------
+# STORY 10: Help then plan trip
+# ---------------------------------------------------------------------------
+- story: ask help then plan trip
+  steps:
+    - intent: ask_help
+    - action: utter_help
+    - intent: plan_trip
+    - action: utter_collecting_info
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_trip_summary
+
+# ---------------------------------------------------------------------------
+# STORY 11: Thanks and goodbye
+# ---------------------------------------------------------------------------
+- story: thanks and goodbye
+  steps:
+    - intent: thanks
+    - action: utter_thanks
+    - intent: goodbye
+    - action: utter_goodbye
+
+# ---------------------------------------------------------------------------
+# STORY 12: Carbon then activities
+# ---------------------------------------------------------------------------
+- story: carbon then activities
+  steps:
+    - intent: ask_carbon
+    - action: action_calculate_carbon
+    - intent: ask_activities
+    - action: action_recommend_activities
+    - intent: thanks
+    - action: utter_thanks

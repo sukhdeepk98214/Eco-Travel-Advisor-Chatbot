@@ -1,0 +1,269 @@
+# =============================================================================
+# Eco-Travel Advisor - Domain Configuration
+# Defines: intents, entities, slots, responses, forms, actions
+# =============================================================================
+
+version: "3.1"
+
+# ---------------------------------------------------------------------------
+# INTENTS
+# ---------------------------------------------------------------------------
+intents:
+  - greet
+  - goodbye
+  - plan_trip
+  - provide_destination
+  - provide_budget
+  - provide_dates
+  - provide_travelers
+  - sustainability_preference
+  - ask_hotel
+  - ask_transport
+  - ask_carbon
+  - ask_activities
+  - human_handover
+  - affirm
+  - deny
+  - bot_challenge
+  - thanks
+  - ask_help
+  - restart
+  - out_of_scope
+
+# ---------------------------------------------------------------------------
+# ENTITIES
+# ---------------------------------------------------------------------------
+entities:
+  - destination
+  - budget
+  - date
+  - travelers
+  - sustainability_level
+  - transport_type
+
+# ---------------------------------------------------------------------------
+# SLOTS  (tracked across turns)
+# ---------------------------------------------------------------------------
+slots:
+  destination:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: destination
+      - type: from_text
+        conditions:
+          - active_loop: trip_planning_form
+            requested_slot: destination
+
+  budget:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: budget
+      - type: from_text
+        conditions:
+          - active_loop: trip_planning_form
+            requested_slot: budget
+
+  travel_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: date
+      - type: from_text
+        conditions:
+          - active_loop: trip_planning_form
+            requested_slot: travel_date
+
+  travelers:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: travelers
+      - type: from_text
+        conditions:
+          - active_loop: trip_planning_form
+            requested_slot: travelers
+
+  sustainability_level:
+    type: categorical
+    values:
+      - low
+      - medium
+      - high
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: sustainability_level
+      - type: from_text
+        conditions:
+          - active_loop: trip_planning_form
+            requested_slot: sustainability_level
+
+  transport_type:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: transport_type
+
+  handover_requested:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+# ---------------------------------------------------------------------------
+# RESPONSES
+# ---------------------------------------------------------------------------
+responses:
+  utter_greet:
+    - text: |
+        🌿 Hello! I'm the **Eco-Travel Advisor** — your intelligent guide to sustainable travel!
+
+        I can help you:
+        🏨 Find eco-friendly hotels
+        🚆 Recommend green transport options
+        🌍 Calculate your carbon footprint
+        🎭 Discover local cultural experiences
+        ♻️ Connect you with carbon offset programs
+
+        Ready to plan your next sustainable adventure? Just say **"I want to plan a trip"** to get started!
+
+  utter_goodbye:
+    - text: |
+        🌿 Thank you for choosing sustainable travel! Every eco-friendly choice makes a difference.
+
+        Safe and green travels! Goodbye! 👋
+
+  utter_ask_destination:
+    - text: "🗺️ Where would you like to travel? Please tell me your destination (city and/or country)."
+    - text: "✈️ What's your dream destination? Tell me where you'd like to go!"
+    - text: "🌍 Where are you planning to travel? Please share your destination."
+
+  utter_ask_budget:
+    - text: |
+        💰 What is your approximate budget for this trip?
+        (e.g., $500, $2000, or describe as low/medium/high budget)
+    - text: "💵 How much are you looking to spend on this trip? Please give me a budget estimate."
+
+  utter_ask_travel_date:
+    - text: "📅 When are you planning to travel? Please share your travel dates (e.g., 'July 15-22' or 'next month')."
+    - text: "🗓️ What are your planned travel dates? This helps me find the best options for you."
+
+  utter_ask_travelers:
+    - text: "👥 How many people will be traveling? (Just yourself, a couple, a family, or a group?)"
+    - text: "🧳 How many travelers are joining this trip?"
+
+  utter_ask_sustainability_level:
+    - text: |
+        🌱 What is your sustainability preference for this trip?
+
+        - **Low** — Comfort-first, some eco-friendly options
+        - **Medium** — Balance of comfort and sustainability
+        - **High** — Maximum eco-friendly focus, minimal carbon impact
+
+        Please choose: Low, Medium, or High
+    - text: |
+        ♻️ How eco-conscious would you like your trip to be?
+        Options: **Low** | **Medium** | **High**
+
+  utter_affirm:
+    - text: "Great! Let me proceed with that."
+    - text: "Perfect! Moving forward."
+
+  utter_deny:
+    - text: "No problem! Let me know how I can adjust."
+
+  utter_bot_challenge:
+    - text: "I am the Eco-Travel Advisor, an AI-powered chatbot built with Rasa to help you plan sustainable trips! 🌿"
+
+  utter_thanks:
+    - text: "You're welcome! Happy sustainable travels! 🌍"
+    - text: "My pleasure! Feel free to ask anytime. 🌿"
+
+  utter_help:
+    - text: |
+        🌿 **Here's what I can help you with:**
+
+        🗺️ **Trip Planning** — "I want to plan a trip to Costa Rica"
+        🏨 **Eco Hotels** — "Show me eco-friendly hotels"
+        🚆 **Green Transport** — "What are sustainable transport options?"
+        🌍 **Carbon Footprint** — "Calculate my carbon emissions"
+        🎭 **Activities** — "What local experiences are available?"
+        ♻️ **Carbon Offsets** — "Tell me about carbon offset programs"
+        👤 **Human Agent** — "Connect me to a human agent"
+
+  utter_out_of_scope:
+    - text: "I'm specialized in eco-friendly travel planning. I might not be the best resource for that, but I'm happy to help with sustainable travel! 🌿"
+
+  utter_default_fallback:
+    - text: |
+        🤔 I didn't quite understand that. Could you rephrase?
+
+        You can ask me about:
+        - Planning an eco-friendly trip
+        - Sustainable hotel recommendations
+        - Green transportation options
+        - Carbon footprint calculation
+        - Local cultural activities
+
+  utter_ask_continue_planning:
+    - text: "Would you like to continue planning your trip, or is there something specific you'd like to know?"
+
+  utter_collecting_info:
+    - text: "Let me gather some information to give you the best eco-friendly recommendations! 🌿"
+
+  utter_invalid_sustainability:
+    - text: "Please choose one of these options: **Low**, **Medium**, or **High**."
+
+  utter_invalid_travelers:
+    - text: "Please enter a valid number of travelers (e.g., 1, 2, 4)."
+
+  utter_handover_initiated:
+    - text: |
+        👤 **Connecting you to a human agent...**
+
+        Please hold on while I transfer you. A travel specialist will be with you shortly.
+        Your conversation summary has been shared with the agent.
+
+  utter_slots_summary:
+    - text: |
+        📋 **Your Trip Summary:**
+        Please review the details I have so far.
+
+# ---------------------------------------------------------------------------
+# FORMS
+# ---------------------------------------------------------------------------
+forms:
+  trip_planning_form:
+    required_slots:
+      - destination
+      - travel_date
+      - budget
+      - travelers
+      - sustainability_level
+
+# ---------------------------------------------------------------------------
+# ACTIONS
+# ---------------------------------------------------------------------------
+actions:
+  - action_recommend_hotels
+  - action_recommend_transport
+  - action_calculate_carbon
+  - action_recommend_activities
+  - action_human_handover
+  - action_trip_summary
+  - action_validate_trip_planning_form
+  - validate_trip_planning_form
+
+# ---------------------------------------------------------------------------
+# SESSION CONFIG
+# ---------------------------------------------------------------------------
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

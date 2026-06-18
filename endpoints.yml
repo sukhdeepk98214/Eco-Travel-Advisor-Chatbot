@@ -1,0 +1,34 @@
+# =============================================================================
+# Eco-Travel Advisor - Endpoints Configuration
+# =============================================================================
+
+# Action server (runs custom Python actions)
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+
+# Tracker store (SQLite for development, PostgreSQL for production)
+tracker_store:
+  type: SQLTrackerStore
+  dialect: sqlite
+  url: sqlite:///eco_travel_tracker.db
+
+# Event broker (optional — enables real-time monitoring)
+# event_broker:
+#   type: pika
+#   url: localhost
+#   username: guest
+#   password: guest
+#   queues:
+#     - rasa_core_events
+
+# NLG server (optional — for dynamic response generation)
+# nlg:
+#   url: http://localhost:5056/nlg
+
+# Lock store (for multi-instance deployments)
+# lock_store:
+#   type: redis
+#   url: localhost
+#   port: 6379
+#   password: null
+#   db: 1

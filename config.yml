@@ -1,0 +1,70 @@
+# =============================================================================
+# Eco-Travel Advisor - Rasa NLU + Core Configuration
+# =============================================================================
+recipe: default.v1
+
+assistant_id: eco_travel_advisor
+
+language: en
+
+pipeline:
+  # Tokenizer: splits text into tokens
+  - name: WhitespaceTokenizer
+
+  # Regex features for structured patterns (dates, budgets)
+  - name: RegexFeaturizer
+
+  # Count-vector features for bag-of-words representation
+  - name: CountVectorsFeaturizer
+
+  # Character-level count vectors (handles typos better)
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+
+  # DIET: Dual Intent and Entity Transformer (joint NLU model)
+  - name: DIETClassifier
+    epochs: 150
+    constrain_similarities: true
+    entity_recognition: true
+
+  # Maps entity synonyms defined in NLU data
+  - name: EntitySynonymMapper
+
+  # Extracts entities via regex patterns
+  - name: RegexEntityExtractor
+    use_lookup_tables: true
+    use_regexes: true
+
+  # Fallback classifier: triggers when confidence is low
+  - name: FallbackClassifier
+    threshold: 0.70
+    ambiguity_threshold: 0.10
+
+  # Response selector for FAQ-style responses
+  - name: ResponseSelector
+    epochs: 100
+    constrain_similarities: true
+
+policies:
+  # Memoization: remembers exact training story paths
+  - name: MemoizationPolicy
+    max_history: 8
+
+  # Rule-based policy for deterministic flows
+  - name: RulePolicy
+    core_fallback_threshold: 0.40
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: true
+
+  # TED: Transformer Embedding Dialogue policy
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 150
+    constrain_similarities: true
+
+  # Unexpected intent handler
+  - name: UnexpecTEDIntentPolicy
+    max_history: 5
+    epochs: 100
