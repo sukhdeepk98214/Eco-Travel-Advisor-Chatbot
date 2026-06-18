@@ -6,17 +6,25 @@ The chatbot collects user inputs like destination, budget, travel dates, and pre
 🚀 Features
 
 -Conversational AI built with Rasa framework
+
 -Streamlit-based user interface
+
 -Multi-turn dialogue handling
+
 -Custom Python actions for responses
+
 -Travel planning flow (destination, budget, dates, people)
 
 🛠 Tech Stack
 
 Python 3.9
+
 Rasa 3.6
+
 Streamlit
+
 YAML-based training data
+
 Custom Action Server
 
 💡 Project Goal
