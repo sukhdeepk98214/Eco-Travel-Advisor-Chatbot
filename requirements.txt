@@ -1,5 +1,5 @@
 # =============================================================================
-# Eco-Travel Advisor - Python Dependencies
+# Eco-Travel Advisor - Production Requirments
 # =============================================================================
 
 # Core Rasa Framework
@@ -11,9 +11,8 @@ rasa-sdk==3.6.2
 # Streamlit frontend
 streamlit==1.32.0
 
-# HTTP requests (used by frontend + actions)
-requests==2.31.0
+# HTTP requests
+requests>=2.31.0
 
-# Data handling
-# (included with rasa, listed for clarity)
-aiohttp==3.9.3
+# Required for Rasa + pkg_resources fix
+setuptools>=69.0
